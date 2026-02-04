@@ -1,8 +1,10 @@
+'use client'
+
 import { useState, useMemo, useEffect, useRef } from 'react'
 import { Field, Input, Label, Radio, RadioGroup } from '@headlessui/react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Toaster, toast } from 'sonner'
-import './index.css'
+import '../app.css'
 
 const BLOCK_COLORS = [
   { id: 0, bg: 'bg-emerald-400', border: 'border-emerald-600', text: 'text-white', name: 'Green' },
