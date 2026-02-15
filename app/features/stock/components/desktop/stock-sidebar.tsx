@@ -1,0 +1,18 @@
+import { StockForm } from '../stock-form'
+import { MaterialPalette } from '../material-palette'
+
+export function StockSidebar(props: any) {
+  return (
+    <aside className="hidden md:flex w-[400px] p-10 bg-white/80 backdrop-blur-xl border-r border-sky-100 flex-col z-20 shadow-2xl">
+      <header className="mb-8">
+        <h1 className="text-3xl font-black tracking-tighter italic text-sky-600">TSUMIKI</h1>
+        <p className="text-[10px] font-black text-sky-400 mt-2 tracking-[0.2em] uppercase">Material Stock</p>
+      </header>
+
+      <div className="space-y-6 flex-1 overflow-y-auto pr-2 scrollbar-hide">
+        <StockForm {...props} />
+        <MaterialPalette {...props} />
+      </div>
+    </aside>
+  )
+}
