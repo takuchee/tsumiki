@@ -2,6 +2,11 @@ import { motion } from 'framer-motion'
 import { StockForm } from '../stock-form'
 import { MaterialPalette } from '../material-palette' // ★追加
 
+/**
+ * @description モバイル画面用ののコンポーネント。ストックの追加フォームと資材パレットを表示するドロワーを表示。
+ * @param param0 
+ * @returns 
+ */
 export function StockDrawer({ isOpen, onClose, ...commonProps }: any) {
   return (
     <>

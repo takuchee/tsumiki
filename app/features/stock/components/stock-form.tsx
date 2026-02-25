@@ -1,5 +1,11 @@
 import { useRef } from 'react'
 
+/**
+ * 
+ * @description ブロックをストックするためのフォームコンポーネント。資材名、日付、ブロックの色を選択して追加できる。
+ * @param param0 
+ * @returns 
+ */
 export function StockForm({
   onAdd, targetDate, setTargetDate,
   selectedColorIdx, setSelectedColorIdx, BLOCK_COLORS

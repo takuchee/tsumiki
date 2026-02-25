@@ -14,6 +14,11 @@ interface MaterialPaletteProps {
   BLOCK_COLORS: any[];
 }
 
+/**
+ * @description ストックされた資材を表示するコンポーネント。
+ * @param param0 
+ * @returns 
+ */
 export function MaterialPalette({
   materials,
   onStack,
