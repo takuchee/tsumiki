@@ -6,7 +6,10 @@ export function useStock(initialLogs: any[] = [], BLOCK_COLORS: any[] = []) {
   // guard against undefined or non-array values coming from props/loader
   const safeLogs = Array.isArray(initialLogs) ? initialLogs : [];
   if (!Array.isArray(initialLogs)) {
-    console.warn("useStock received invalid initialLogs, falling back to empty array", initialLogs);
+    console.warn(
+      "useStock received invalid initialLogs, falling back to empty array",
+      initialLogs,
+    );
   }
 
   const [allTasks, setAllTasks] = useState(() =>
@@ -52,8 +55,9 @@ export function useStock(initialLogs: any[] = [], BLOCK_COLORS: any[] = []) {
     if (error) return toast.error("ストックに失敗しました");
     setAllTasks([
       {
-        ...data,
+        id: data.id,
         content: data.task_name,
+        date: data.task_date,
         colorIdx: selectedColorIdx,
         status: "pending",
       },

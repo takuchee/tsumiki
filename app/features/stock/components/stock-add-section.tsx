@@ -13,7 +13,7 @@ export function StockAddSection({ initialLogs = [], BLOCK_COLORS }: any) {
   return (
     <>
       {/* PC版 */}
-      <StockSidebar {...commonProps} />
+      <StockSidebar initialLogs={initialLogs} BLOCK_COLORS={BLOCK_COLORS} />
 
       {/* モバイル版 */}
       <AnimatePresence>
