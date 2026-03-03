@@ -4,16 +4,16 @@ import { StockSidebar } from './desktop/stock-sidebar';
 import { StockDrawer } from './mobile/stock-drawer';
 import { AnimatePresence, motion } from 'framer-motion';
 
-export function StockAddSection({ initialLogs = [], BLOCK_COLORS }: any) {
-  const { materials, state, actions } = useStock(initialLogs, BLOCK_COLORS);
+export function StockAddSection({ initialLogs = [] }: any) {
+  const { materials, state, actions } = useStock(initialLogs);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
-  const commonProps = { materials, ...state, ...actions, BLOCK_COLORS };
+  const commonProps = { materials, ...state, ...actions, };
 
   return (
     <>
       {/* PC版 */}
-      <StockSidebar initialLogs={initialLogs} BLOCK_COLORS={BLOCK_COLORS} />
+      <StockSidebar initialLogs={initialLogs} />
 
       {/* モバイル版 */}
       <AnimatePresence>

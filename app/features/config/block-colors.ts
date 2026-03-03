@@ -1,4 +1,4 @@
-import type { BlockColor } from "./types/stock";
+import type { BlockColor } from "../stock/types/stock";
 
 export const BLOCK_COLORS: readonly BlockColor[] = [
   {

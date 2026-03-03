@@ -2,22 +2,17 @@ import { StockForm } from '../stock-form'
 import { MaterialPalette } from '../material-palette'
 import { useStock } from '../../hooks/use-stock'
 
-interface StockSidebarProps {
-  initialLogs: any[];
-  BLOCK_COLORS: any[];
-}
-
 /**
  * @description デスクトップ画面用のコンポーネント。
  *              `useStock` を内部で呼び出し、フォームとパレットに
  *              必要な props を直接渡すことで外部からのバケツリレーを排除。
  */
-export function StockSidebar({ initialLogs, BLOCK_COLORS }: StockSidebarProps) {
+export function StockSidebar({ initialLogs }: any) {
   const {
     materials,
     state: { targetDate, setTargetDate, selectedColorIdx, setSelectedColorIdx },
     actions: { handleAdd, handleStack, handleDelete },
-  } = useStock(initialLogs, BLOCK_COLORS)
+  } = useStock(initialLogs)
 
   return (
     <aside className="hidden md:flex w-[400px] p-10 bg-white/80 backdrop-blur-xl border-r border-sky-100 flex-col z-20 shadow-2xl">
@@ -33,13 +28,11 @@ export function StockSidebar({ initialLogs, BLOCK_COLORS }: StockSidebarProps) {
           setTargetDate={setTargetDate}
           selectedColorIdx={selectedColorIdx}
           setSelectedColorIdx={setSelectedColorIdx}
-          BLOCK_COLORS={BLOCK_COLORS}
         />
         <MaterialPalette
           materials={materials}
           onStack={handleStack}
           onDelete={handleDelete}
-          BLOCK_COLORS={BLOCK_COLORS}
         />
       </div>
     </aside>

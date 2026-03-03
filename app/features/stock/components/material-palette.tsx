@@ -1,4 +1,5 @@
 import { motion, AnimatePresence } from 'framer-motion';
+import { BLOCK_COLORS } from '~/features/config/block-colors';
 
 interface Material {
   id: string;
@@ -11,7 +12,6 @@ interface MaterialPaletteProps {
   materials: Material[];
   onStack: (id: string) => void;
   onDelete: (id: string) => void;
-  BLOCK_COLORS: any[];
 }
 
 /**
@@ -22,8 +22,7 @@ interface MaterialPaletteProps {
 export function MaterialPalette({
   materials,
   onStack,
-  onDelete,
-  BLOCK_COLORS
+  onDelete
 }: MaterialPaletteProps) {
   return (
     <section>

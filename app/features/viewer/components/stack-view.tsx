@@ -1,6 +1,7 @@
 import { motion, AnimatePresence } from 'framer-motion'
+import { BLOCK_COLORS } from '~/features/config/block-colors'
 
-export function StackView({ groupedLogs, onUnstack, BLOCK_COLORS }: any) {
+export function StackView({ groupedLogs, onUnstack }: any) {
   return (
     <div className="max-w-md mx-auto py-20 flex flex-col">
       {groupedLogs.map(([date, tasks]: any) => (
