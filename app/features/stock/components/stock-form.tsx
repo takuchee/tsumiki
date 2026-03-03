@@ -1,4 +1,5 @@
 import { useRef } from 'react'
+import { BLOCK_COLORS } from '~/features/config/block-colors'
 
 /**
  * 
@@ -8,7 +9,7 @@ import { useRef } from 'react'
  */
 export function StockForm({
   onAdd, targetDate, setTargetDate,
-  selectedColorIdx, setSelectedColorIdx, BLOCK_COLORS
+  selectedColorIdx, setSelectedColorIdx
 }: any) {
   const inputRef = useRef<HTMLInputElement>(null)
 

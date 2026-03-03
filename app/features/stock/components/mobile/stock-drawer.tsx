@@ -40,7 +40,6 @@ export function StockDrawer({ isOpen, onClose, ...commonProps }: any) {
             materials={commonProps.materials}
             onStack={(id: string) => { commonProps.onStack(id); onClose(); }} // 積んだら閉じる
             onDelete={commonProps.onDelete}
-            BLOCK_COLORS={commonProps.BLOCK_COLORS}
           />
         </div>
       </motion.div>

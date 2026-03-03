@@ -3,9 +3,9 @@ import { useStock } from '~/features/stock/hooks/use-stock';
 import { StackView } from './stack-view';
 import { useMemo } from 'react'
 
-export function ViewerSection({ initialLogs = [], BLOCK_COLORS }: any) {
+export function ViewerSection({ initialLogs = [] }: any) {
   // StockSectionと同じフックを参照して、同期したデータを取得
-  const { completedTasks, totalPoints, actions } = useStock(initialLogs, BLOCK_COLORS);
+  const { completedTasks, totalPoints, actions } = useStock(initialLogs);
 
   // 日付ごとにグループ化するロジック（ここでもSingle Responsibility!）
   const groupedLogs = useMemo(() => {
@@ -36,7 +36,6 @@ export function ViewerSection({ initialLogs = [], BLOCK_COLORS }: any) {
         <StackView
           groupedLogs={groupedLogs}
           onUnstack={actions.handleUnstack}
-          BLOCK_COLORS={BLOCK_COLORS}
         />
       </div>
     </>

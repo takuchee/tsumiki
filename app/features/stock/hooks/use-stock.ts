@@ -1,8 +1,10 @@
 import { useState, useMemo } from "react";
-import { supabase } from "~/lib/supabase";
 import { toast } from "sonner";
+import { BLOCK_COLORS } from "~/features/config/block-colors";
+import { taskLogRepository } from "../api/task-logs";
+import type { TaskLog } from "../types/task-log";
 
-export function useStock(initialLogs: any[] = [], BLOCK_COLORS: any[] = []) {
+export function useStock(initialLogs: TaskLog[]) {
   // guard against undefined or non-array values coming from props/loader
   const safeLogs = Array.isArray(initialLogs) ? initialLogs : [];
   if (!Array.isArray(initialLogs)) {
@@ -39,59 +41,65 @@ export function useStock(initialLogs: any[] = [], BLOCK_COLORS: any[] = []) {
   const totalPoints = completedTasks.length;
 
   const handleAdd = async (content: string) => {
-    const { data, error } = await supabase
-      .from("task_logs")
-      .insert([
+    try {
+      const newTask = await taskLogRepository.create({
+        task_name: content,
+        task_date: targetDate,
+        block_color: BLOCK_COLORS[selectedColorIdx].name,
+        status: "pending",
+      });
+      setAllTasks([
         {
-          task_name: content,
-          block_color: BLOCK_COLORS[selectedColorIdx].name,
-          task_date: targetDate,
+          id: newTask.id,
+          content: newTask.task_name,
+          date: newTask.task_date,
+          colorIdx: selectedColorIdx,
           status: "pending",
         },
-      ])
-      .select()
-      .single();
-
-    if (error) return toast.error("ストックに失敗しました");
-    setAllTasks([
-      {
-        id: data.id,
-        content: data.task_name,
-        date: data.task_date,
-        colorIdx: selectedColorIdx,
-        status: "pending",
-      },
-      ...allTasks,
-    ]);
-    toast.success("資材をストック！🧱");
+        ...allTasks,
+      ]);
+      toast.success("資材をストック！🧱");
+    } catch (error) {
+      toast.error("ストックに失敗しました");
+      return;
+    }
   };
 
   const handleStack = async (id: string) => {
-    const { error } = await supabase
-      .from("task_logs")
-      .update({ status: "completed" })
-      .eq("id", id);
-    if (error) return toast.error("失敗");
-    setAllTasks((prev) =>
-      prev.map((t) => (t.id === id ? { ...t, status: "completed" } : t)),
-    );
+    try {
+      await taskLogRepository.update(id, { status: "completed" });
+      setAllTasks((prev) =>
+        prev.map((t) => (t.id === id ? { ...t, status: "completed" } : t)),
+      );
+      toast.success("ストックを積み上げました！📦");
+    } catch (error) {
+      toast.error("失敗");
+      return;
+    }
   };
 
   const handleUnstack = async (id: string) => {
-    const { error } = await supabase
-      .from("task_logs")
-      .update({ status: "pending" })
-      .eq("id", id);
-    if (error) return toast.error("失敗");
-    setAllTasks((prev) =>
-      prev.map((t) => (t.id === id ? { ...t, status: "pending" } : t)),
-    );
+    try {
+      await taskLogRepository.update(id, { status: "pending" });
+      setAllTasks((prev) =>
+        prev.map((t) => (t.id === id ? { ...t, status: "pending" } : t)),
+      );
+      toast.success("ストックに戻しました！🔄");
+    } catch (error) {
+      toast.error("失敗");
+      return;
+    }
   };
 
   const handleDelete = async (id: string) => {
-    const { error } = await supabase.from("task_logs").delete().eq("id", id);
-    if (error) return toast.error("失敗");
-    setAllTasks((prev) => prev.filter((t) => t.id !== id));
+    try {
+      await taskLogRepository.delete(id);
+      setAllTasks((prev) => prev.filter((t) => t.id !== id));
+      toast.success("ストックを削除しました！🗑️");
+    } catch (error) {
+      toast.error("削除に失敗しました");
+      return;
+    }
   };
 
   return {
