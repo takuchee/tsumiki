@@ -4,21 +4,18 @@ import { StockSidebar } from './desktop/stock-sidebar';
 import { StockDrawer } from './mobile/stock-drawer';
 import { AnimatePresence, motion } from 'framer-motion';
 
-export function StockAddSection({ initialLogs = [] }: any) {
-  const { materials, state, actions } = useStock(initialLogs);
+export function StockAddSection() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-
-  const commonProps = { materials, ...state, ...actions, };
 
   return (
     <>
       {/* PC版 */}
-      <StockSidebar initialLogs={initialLogs} />
+      <StockSidebar />
 
       {/* モバイル版 */}
       <AnimatePresence>
         {isMobileMenuOpen && (
-          <StockDrawer isOpen={isMobileMenuOpen} onClose={() => setIsMobileMenuOpen(false)} {...commonProps} />
+          <StockDrawer isOpen={isMobileMenuOpen} onClose={() => setIsMobileMenuOpen(false)} />
         )}
       </AnimatePresence>
 

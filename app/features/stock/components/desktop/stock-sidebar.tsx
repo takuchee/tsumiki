@@ -7,12 +7,7 @@ import { useStock } from '../../hooks/use-stock'
  *              `useStock` を内部で呼び出し、フォームとパレットに
  *              必要な props を直接渡すことで外部からのバケツリレーを排除。
  */
-export function StockSidebar({ initialLogs }: any) {
-  const {
-    materials,
-    state: { targetDate, setTargetDate, selectedColorIdx, setSelectedColorIdx },
-    actions: { handleAdd, handleStack, handleDelete },
-  } = useStock(initialLogs)
+export function StockSidebar() {
 
   return (
     <aside className="hidden md:flex w-[400px] p-10 bg-white/80 backdrop-blur-xl border-r border-sky-100 flex-col z-20 shadow-2xl">
@@ -22,18 +17,8 @@ export function StockSidebar({ initialLogs }: any) {
       </header>
 
       <div className="space-y-6 flex-1 overflow-y-auto pr-2 scrollbar-hide">
-        <StockForm
-          onAdd={handleAdd}
-          targetDate={targetDate}
-          setTargetDate={setTargetDate}
-          selectedColorIdx={selectedColorIdx}
-          setSelectedColorIdx={setSelectedColorIdx}
-        />
-        <MaterialPalette
-          materials={materials}
-          onStack={handleStack}
-          onDelete={handleDelete}
-        />
+        <StockForm />
+        <MaterialPalette />
       </div>
     </aside>
   )

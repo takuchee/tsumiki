@@ -6,11 +6,10 @@ export interface StockItem {
   status: "pending" | "completed";
 }
 
-export type BlockColor = {
-  id: number;
+export type ColorName = "Green" | "Yellow" | "Blue" | "Red" | "Purple";
+export type ColorTheme = {
   bg: string;
   shadow: string;
   border: string;
   text: string;
-  name: string;
 };

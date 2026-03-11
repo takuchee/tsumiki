@@ -1,29 +1,15 @@
 import { motion, AnimatePresence } from 'framer-motion';
 import { BLOCK_COLORS } from '~/features/config/block-colors';
-
-interface Material {
-  id: string;
-  content: string;
-  date: string;
-  colorIdx: number;
-}
-
-interface MaterialPaletteProps {
-  materials: Material[];
-  onStack: (id: string) => void;
-  onDelete: (id: string) => void;
-}
+import { useStock } from '../hooks/use-stock';
 
 /**
  * @description ストックされた資材を表示するコンポーネント。
  * @param param0 
  * @returns 
  */
-export function MaterialPalette({
-  materials,
-  onStack,
-  onDelete
-}: MaterialPaletteProps) {
+export function MaterialPalette() {
+  const { materials, actions } = useStock();
+
   return (
     <section>
       <h2 className="text-[10px] font-black text-sky-400 uppercase tracking-[0.2em] mb-4">
@@ -33,7 +19,7 @@ export function MaterialPalette({
       <div className="grid grid-cols-2 gap-3">
         <AnimatePresence mode="popLayout">
           {materials.map((m) => {
-            const color = BLOCK_COLORS[m.colorIdx];
+            const color = BLOCK_COLORS[m.block_color];
             return (
               <motion.div
                 key={m.id}
@@ -45,7 +31,7 @@ export function MaterialPalette({
               >
                 {/* 削除ボタン */}
                 <button
-                  onClick={() => onDelete(m.id)}
+                  onClick={() => actions.handleDelete(m.id)}
                   className="absolute -top-2 -left-2 w-6 h-6 bg-white border-2 border-sky-100 rounded-full flex items-center justify-center text-sky-300 opacity-0 group-hover:opacity-100 hover:text-rose-500 z-30 transition-all shadow-sm"
                 >
                   ×
@@ -53,14 +39,14 @@ export function MaterialPalette({
 
                 {/* 資材カード（クリックで積み上げ） */}
                 <button
-                  onClick={() => onStack(m.id)}
+                  onClick={() => actions.handleStack(m.id)}
                   className={`w-full p-3 rounded-xl border-2 ${color.border} ${color.bg} shadow-[0_4px_0_0_rgba(0,0,0,0.05)] text-left overflow-hidden active:translate-y-0.5 active:shadow-none transition-all`}
                 >
                   <span className="text-[8px] font-black opacity-50 block mb-1 text-sky-900">
-                    {m.date.replace(/-/g, '.')}
+                    {m.task_date.replace(/-/g, '.')}
                   </span>
                   <span className={`block truncate text-[11px] font-black ${color.text}`}>
-                    {m.content}
+                    {m.task_name}
                   </span>
                 </button>
               </motion.div>

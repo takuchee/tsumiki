@@ -7,7 +7,7 @@ import { MaterialPalette } from '../material-palette' // ★追加
  * @param param0 
  * @returns 
  */
-export function StockDrawer({ isOpen, onClose, ...commonProps }: any) {
+export function StockDrawer({ isOpen, onClose }: any) {
   return (
     <>
       {/* 背景オーバーレイ */}
@@ -33,14 +33,10 @@ export function StockDrawer({ isOpen, onClose, ...commonProps }: any) {
           </header>
 
           {/* 入力フォーム */}
-          <StockForm {...commonProps} onAdd={(val: string) => { commonProps.onAdd(val); }} />
+          <StockForm />
 
           {/* ★資材カード一覧を追加 */}
-          <MaterialPalette
-            materials={commonProps.materials}
-            onStack={(id: string) => { commonProps.onStack(id); onClose(); }} // 積んだら閉じる
-            onDelete={commonProps.onDelete}
-          />
+          <MaterialPalette />
         </div>
       </motion.div>
     </>

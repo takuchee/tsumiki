@@ -1,22 +1,22 @@
 import { useRef } from 'react'
 import { BLOCK_COLORS } from '~/features/config/block-colors'
+import { useStock } from '../hooks/use-stock';
+import { useStockContext } from '../stores/stock-store';
+import type { ColorName } from '../types';
 
 /**
- * 
+ *
  * @description ブロックをストックするためのフォームコンポーネント。資材名、日付、ブロックの色を選択して追加できる。
- * @param param0 
- * @returns 
  */
-export function StockForm({
-  onAdd, targetDate, setTargetDate,
-  selectedColorIdx, setSelectedColorIdx
-}: any) {
+export function StockForm() {
   const inputRef = useRef<HTMLInputElement>(null)
+  const { actions } = useStock();
+  const { targetDate, setTargetDate, selectedColor, setSelectedColor } = useStockContext();
 
   const handleAdd = () => {
     const val = inputRef.current?.value || ""
     if (!val.trim()) return
-    onAdd(val)
+    actions.handleAdd(val)
     if (inputRef.current) inputRef.current.value = ""
   }
 
@@ -34,11 +34,11 @@ export function StockForm({
       <div className="flex items-center justify-between border-t border-sky-100 pt-4">
         <input type="date" value={targetDate} onChange={(e) => setTargetDate(e.target.value)} className="bg-transparent text-xs font-bold focus:outline-none text-sky-600" />
         <div className="flex gap-1.5">
-          {BLOCK_COLORS.map((c: any) => (
+          {(Object.keys(BLOCK_COLORS) as ColorName[]).map((name) => (
             <button
-              key={c.id}
-              onClick={() => setSelectedColorIdx(c.id)}
-              className={`w-5 h-5 rounded-full border-2 ${c.bg} ${selectedColorIdx === c.id ? 'border-sky-600 scale-125' : 'border-white'} transition-transform`}
+              key={name}
+              onClick={() => setSelectedColor(name)}
+              className={`w-5 h-5 rounded-full border-2 ${BLOCK_COLORS[name].bg} ${selectedColor === name ? 'border-sky-600 scale-125' : 'border-white'} transition-transform`}
             />
           ))}
         </div>

@@ -20,7 +20,7 @@ export const taskLogRepository = {
     if (error) {
       throw new Error(error.message);
     }
-    return data as TaskLog[];
+    return data ?? [];
   },
   /** 新しいタスクを作成する */
   async create(task: CreateTaskInput): Promise<TaskLog> {
