@@ -1,3 +1,5 @@
+import type { ColorName } from "./stock";
+
 /**
  * Supabaseの 'task_logs' テーブルのデータ構造
  */
@@ -5,7 +7,7 @@ export interface TaskLog {
   id: string;
   task_name: string;
   task_date: string;
-  block_color: string;
+  block_color: ColorName;
   status: "pending" | "completed";
   created_at: string;
 }

@@ -3,19 +3,9 @@ import { useStock } from '~/features/stock/hooks/use-stock';
 import { StackView } from './stack-view';
 import { useMemo } from 'react'
 
-export function ViewerSection({ initialLogs = [] }: any) {
+export function ViewerSection() {
   // StockSectionと同じフックを参照して、同期したデータを取得
-  const { completedTasks, totalPoints, actions } = useStock(initialLogs);
-
-  // 日付ごとにグループ化するロジック（ここでもSingle Responsibility!）
-  const groupedLogs = useMemo(() => {
-    const groups: { [key: string]: any[] } = {};
-    completedTasks.forEach(task => {
-      if (!groups[task.date]) groups[task.date] = [];
-      groups[task.date].push(task);
-    });
-    return Object.entries(groups).sort((a, b) => b[0].localeCompare(a[0]));
-  }, [completedTasks]);
+  const { totalPoints } = useStock();
 
   return (
     <>
@@ -33,10 +23,7 @@ export function ViewerSection({ initialLogs = [] }: any) {
 
       {/* ブロック表示エリア */}
       <div className="flex-1 overflow-y-auto p-6 md:px-20 z-10 scrollbar-hide">
-        <StackView
-          groupedLogs={groupedLogs}
-          onUnstack={actions.handleUnstack}
-        />
+        <StackView />
       </div>
     </>
   );
