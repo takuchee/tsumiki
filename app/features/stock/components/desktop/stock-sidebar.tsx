@@ -1,6 +1,7 @@
 import { StockForm } from '../stock-form'
 import { MaterialPalette } from '../material-palette'
-import { useStock } from '../../hooks/use-stock'
+import { ScrollArea } from '~/components/ui/scroll-area'
+import { cn } from '~/lib/utils'
 
 /**
  * @description デスクトップ画面用のコンポーネント。
@@ -10,15 +11,20 @@ import { useStock } from '../../hooks/use-stock'
 export function StockSidebar() {
 
   return (
-    <aside className="hidden md:flex w-[400px] p-10 bg-white/80 backdrop-blur-xl border-r border-sky-100 flex-col z-20 shadow-2xl">
-      <header className="mb-8">
+    <aside className={cn("hidden md:flex w-[400px] p-10 bg-white/80 backdrop-blur-xl border-r border-sky-100 flex-col z-20 shadow-2xl")}>
+      <header className="mb-8 shrink-0">
         <h1 className="text-3xl font-black tracking-tighter italic text-sky-600">TSUMIKI</h1>
         <p className="text-[10px] font-black text-sky-400 mt-2 tracking-[0.2em] uppercase">Material Stock</p>
       </header>
 
-      <div className="space-y-6 flex-1 overflow-y-auto pr-2 scrollbar-hide">
+      <div className="mb-8 shrink-0">
         <StockForm />
-        <MaterialPalette />
+      </div>
+
+      <div className="flex-1 min-h-0 -mr-4">
+        <ScrollArea className="h-full pr-0">
+          <MaterialPalette />
+        </ScrollArea>
       </div>
     </aside>
   )

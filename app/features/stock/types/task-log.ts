@@ -6,7 +6,7 @@ import type { ColorName } from "./stock";
 export interface TaskLog {
   id: string;
   task_name: string;
-  task_date: string;
+  task_date: Date;
   block_color: ColorName;
   status: "pending" | "completed";
   created_at: string;

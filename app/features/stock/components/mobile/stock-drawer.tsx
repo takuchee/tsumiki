@@ -1,44 +1,38 @@
-import { motion } from 'framer-motion'
 import { StockForm } from '../stock-form'
 import { MaterialPalette } from '../material-palette' // ★追加
+import { ScrollArea } from '~/components/ui/scroll-area'
+import { Drawer, DrawerContent, DrawerHeader, DrawerTitle } from '~/components/ui/drawer'
 
 /**
  * @description モバイル画面用ののコンポーネント。ストックの追加フォームと資材パレットを表示するドロワーを表示。
  * @param param0 
  * @returns 
  */
-export function StockDrawer({ isOpen, onClose }: any) {
+export function StockDrawer({ isOpen, onClose }: { isOpen: boolean, onClose: () => void }) {
   return (
-    <>
-      {/* 背景オーバーレイ */}
-      <motion.div
-        initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
-        onClick={onClose}
-        className="fixed inset-0 bg-sky-900/40 backdrop-blur-sm z-40 md:hidden"
-      />
+    <Drawer open={isOpen} onOpenChange={(open) => !open && onClose()}>
+      {/* h-[85vh] で全体の高さを制限 */}
+      <DrawerContent className="h-[85vh] p-0 border-none rounded-t-[3rem] flex flex-col">
+        {/* 引き手バー（自動で出ますが、念のため中身をflex-colで制御） */}
 
-      {/* ドロワー本体 */}
-      <motion.div
-        initial={{ y: "100%" }} animate={{ y: 0 }} exit={{ y: "100%" }}
-        transition={{ type: "spring", damping: 25, stiffness: 200 }}
-        className="fixed bottom-0 inset-x-0 h-[85vh] bg-white rounded-t-[3rem] p-8 z-50 shadow-2xl md:hidden flex flex-col"
-      >
-        {/* 引き手バー */}
-        <div className="w-12 h-1.5 bg-slate-200 rounded-full mx-auto mb-8 flex-shrink-0" onClick={onClose} />
+        <DrawerHeader className="px-8 py-6 shrink-0">
+          <DrawerTitle className="text-xl font-black italic text-primary text-left">
+            Material Stock
+          </DrawerTitle>
+        </DrawerHeader>
 
-        {/* スクロール可能なエリア */}
-        <div className="space-y-8 flex-1 overflow-y-auto pb-10 scrollbar-hide">
-          <header>
-            <h2 className="text-xl font-black italic text-sky-600">Material Stock</h2>
-          </header>
-
-          {/* 入力フォーム */}
+        <div className="px-8 mb-6 shrink-0">
           <StockForm />
-
-          {/* ★資材カード一覧を追加 */}
-          <MaterialPalette />
         </div>
-      </motion.div>
-    </>
+
+        <div className="flex-1 min-h-0 px-8 pb-10">
+          <ScrollArea className="h-full w-full">
+            <div className="pr-4">
+              <MaterialPalette />
+            </div>
+          </ScrollArea>
+        </div>
+      </DrawerContent>
+    </Drawer>
   )
 }
