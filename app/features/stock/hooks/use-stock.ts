@@ -1,6 +1,5 @@
 import { useMemo } from "react";
 import { toast } from "sonner";
-import { BLOCK_COLORS } from "~/features/config/block-colors";
 import { taskLogRepository } from "../api/task-logs";
 import { useStockContext } from "../stores/stock-store";
 import type { TaskLog } from "../types";

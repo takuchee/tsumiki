@@ -1,6 +1,10 @@
 import { motion, AnimatePresence } from 'framer-motion';
 import { BLOCK_COLORS } from '~/features/config/block-colors';
 import { useStock } from '../hooks/use-stock';
+import { cn } from '~/lib/utils';
+import { Button } from '~/components/ui/button';
+import { Card, CardHeader, CardTitle } from '~/components/ui/card';
+import { X } from 'lucide-react';
 
 /**
  * @description ストックされた資材を表示するコンポーネント。
@@ -30,25 +34,38 @@ export function MaterialPalette() {
                 className="group relative"
               >
                 {/* 削除ボタン */}
-                <button
+                <Button
+                  variant="outline"
+                  size="icon-xs"
                   onClick={() => actions.handleDelete(m.id)}
-                  className="absolute -top-2 -left-2 w-6 h-6 bg-white border-2 border-sky-100 rounded-full flex items-center justify-center text-sky-300 opacity-0 group-hover:opacity-100 hover:text-rose-500 z-30 transition-all shadow-sm"
-                >
-                  ×
-                </button>
+                  className="absolute -top-2 -left-2 opacity-0 group-hover:opacity-100 transition-opacity z-30">
+                  <X />
+                </Button>
 
                 {/* 資材カード（クリックで積み上げ） */}
-                <button
+                <div
+                  role="button"
+                  tabIndex={0}
                   onClick={() => actions.handleStack(m.id)}
-                  className={`w-full p-3 rounded-xl border-2 ${color.border} ${color.bg} shadow-[0_4px_0_0_rgba(0,0,0,0.05)] text-left overflow-hidden active:translate-y-0.5 active:shadow-none transition-all`}
+                  className="cursor-pointer block w-full"
                 >
-                  <span className="text-[8px] font-black opacity-50 block mb-1 text-sky-900">
-                    {m.task_date.replace(/-/g, '.')}
-                  </span>
-                  <span className={`block truncate text-[11px] font-black ${color.text}`}>
-                    {m.task_name}
-                  </span>
-                </button>
+                  <Card className={cn(
+                    "p-3 border-2 transition-all shadow-[0_4px_0_0_rgba(0,0,0,0.05)]",
+                    "hover:shadow-lg hover:-translate-y-0.5",
+                    "active:translate-y-px",
+                    color.bg,
+                    color.border
+                  )}>
+                    <CardHeader className="p-0 space-y-0">
+                      <time className={cn("text-[8px] font-black opacity-50 block mb-1", color.text)}>
+                        {m.task_date.replace(/-/g, '.')}
+                      </time>
+                      <CardTitle className={cn("text-[11px] font-black truncate", color.text)}>
+                        {m.task_name}
+                      </CardTitle>
+                    </CardHeader>
+                  </Card>
+                </div>
               </motion.div>
             );
           })}
