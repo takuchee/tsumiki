@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import { StockSidebar } from './desktop/stock-sidebar';
 import { StockDrawer } from './mobile/stock-drawer';
-import { AnimatePresence } from 'framer-motion';
 import { Button } from '~/components/ui/button';
 import { cn } from '~/lib/utils';
 

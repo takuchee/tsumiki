@@ -9,6 +9,7 @@ import { Label } from '~/components/ui/label';
 import { Calendar } from '~/components/ui/calendar'
 import { CalendarIcon } from 'lucide-react'
 import { Popover, PopoverContent, PopoverTrigger } from '~/components/ui/popover'
+import { format } from 'date-fns';
 
 /**
  *
@@ -53,10 +54,11 @@ export function StockForm() {
           <PopoverContent className="w-auto p-0">
             <Calendar
               mode="single"
-              selected={targetDate ? new Date(targetDate) : undefined}
+              // 文字列 → Date (UI表示用)
+              selected={targetDate ? new Date(targetDate + 'T00:00:00') : undefined}
               onSelect={(date) => {
-                if (!date) return
-                setTargetDate(date)
+                // Date → 文字列 (State保存用)
+                if (date) setTargetDate(format(date, 'yyyy-MM-dd'))
               }}
             />
           </PopoverContent>
