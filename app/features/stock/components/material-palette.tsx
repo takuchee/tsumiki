@@ -22,11 +22,11 @@ export function MaterialPalette() {
 
       <div className="grid grid-cols-2 gap-3">
         <AnimatePresence mode="popLayout">
-          {materials.map((m) => {
-            const color = BLOCK_COLORS[m.block_color];
+          {materials.map((stockTask) => {
+            const color = BLOCK_COLORS[stockTask.colorName];
             return (
               <motion.div
-                key={m.id}
+                key={stockTask.id}
                 layout
                 initial={{ opacity: 0, scale: 0.8 }}
                 animate={{ opacity: 1, scale: 1 }}
@@ -37,7 +37,7 @@ export function MaterialPalette() {
                 <Button
                   variant="outline"
                   size="icon-xs"
-                  onClick={() => actions.handleDelete(m.id)}
+                  onClick={() => actions.handleDelete(stockTask.id)}
                   className="absolute -top-2 -left-2 opacity-0 group-hover:opacity-100 transition-opacity z-30">
                   <X />
                 </Button>
@@ -46,7 +46,7 @@ export function MaterialPalette() {
                 <div
                   role="button"
                   tabIndex={0}
-                  onClick={() => actions.handleStack(m.id)}
+                  onClick={() => actions.updateStatus(stockTask.id, "completed")}
                   className="cursor-pointer block w-full"
                 >
                   <Card className={cn(
@@ -58,10 +58,10 @@ export function MaterialPalette() {
                   )}>
                     <CardHeader className="p-0 space-y-0">
                       <time className={cn("text-[8px] font-black opacity-50 block mb-1", color.text)}>
-                        {m.task_date.replace(/-/g, '.')}
+                        {stockTask.date.replace(/-/g, '.')}
                       </time>
                       <CardTitle className={cn("text-[11px] font-black truncate", color.text)}>
-                        {m.task_name}
+                        {stockTask.content}
                       </CardTitle>
                     </CardHeader>
                   </Card>

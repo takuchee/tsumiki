@@ -1,14 +1,13 @@
 import { useLoaderData } from 'react-router';
 import { Toaster } from 'sonner';
 import { StockAddSection } from '~/features/stock/components/stock-add-section';
-import { ViewerSection } from '~/features/viewer/components/viewer-section'; // 同様に作成
-import { taskLogRepository } from '~/features/stock/api/task-logs';
-import { StockProvider } from '~/features/stock/stores/stock-store';
-import { getStockInitialData } from '~/features/stock/api/loader';
+import { ViewerSection } from '~/features/stock/components/viewer/viewer-section';
+import { StockProvider } from '~/features/stock/contexts/stock-context';
+import { getStockTasks } from '~/features/stock/usecases/stock-usecase';
 
 export async function loader() {
-  const initialLogs = await getStockInitialData();
-  return initialLogs;
+  const initialLogs = await getStockTasks();
+  return { initialLogs };
 }
 
 export default function IndexPage() {

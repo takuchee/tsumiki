@@ -1,7 +1,7 @@
 import { useRef } from 'react'
 import { BLOCK_COLORS } from '~/features/config/block-colors'
 import { useStock } from '../hooks/use-stock';
-import { useStockContext } from '../stores/stock-store';
+import { useStockContext } from '../contexts/stock-context';
 import type { ColorName } from '../types';
 import { Input } from '~/components/ui/input'
 import { Button } from '~/components/ui/button';

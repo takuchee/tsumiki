@@ -1,9 +1,13 @@
-import type { TaskLog } from "./task-log";
+/**
+ * コンテキストの型定義
+ */
+
+import type { StockTask } from "./stock";
 import type { ColorName } from "./stock";
 
 export type StockContextType = {
-  allTasks: TaskLog[];
-  setAllTasks: React.Dispatch<React.SetStateAction<TaskLog[]>>;
+  allTasks: StockTask[];
+  setAllTasks: React.Dispatch<React.SetStateAction<StockTask[]>>;
   targetDate: string;
   setTargetDate: (date: string) => void;
   selectedColor: ColorName;

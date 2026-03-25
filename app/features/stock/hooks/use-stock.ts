@@ -1,8 +1,13 @@
 import { useMemo } from "react";
 import { toast } from "sonner";
-import { taskLogRepository } from "../api/task-logs";
-import { useStockContext } from "../stores/stock-store";
-import type { TaskLog } from "../types";
+import { taskLogRepository } from "../repository/stock-repository";
+import { useStockContext } from "../contexts/stock-context";
+import {
+  createStockTask,
+  updateStockTaskStatus,
+  deleteStockTask,
+} from "../usecases/stock-usecase";
+import type { StockTask } from "../types";
 
 export function useStock() {
   const {
@@ -27,10 +32,10 @@ export function useStock() {
 
   const handleAdd = async (content: string) => {
     try {
-      const newTask = await taskLogRepository.create({
-        task_name: content,
-        task_date: targetDate,
-        block_color: selectedColor,
+      const newTask = await createStockTask({
+        content,
+        date: targetDate,
+        colorName: selectedColor,
         status: "pending",
       });
       setAllTasks((prev) => [newTask, ...prev]);
@@ -41,11 +46,9 @@ export function useStock() {
     }
   };
 
-  const updateStatus = async (id: string, newStatus: TaskLog["status"]) => {
+  const updateStatus = async (id: string, newStatus: StockTask["status"]) => {
     try {
-      const updatedTask = await taskLogRepository.update(id, {
-        status: newStatus,
-      });
+      const updatedTask = await updateStockTaskStatus(id, newStatus);
       setAllTasks((prev) =>
         prev.map((task) => (task.id === id ? updatedTask : task)),
       );
@@ -55,12 +58,10 @@ export function useStock() {
       return;
     }
   };
-  const handleStack = (id: string) => updateStatus(id, "completed");
-  const handleUnstack = (id: string) => updateStatus(id, "pending");
 
   const handleDelete = async (id: string) => {
     try {
-      await taskLogRepository.delete(id);
+      await deleteStockTask(id);
       setAllTasks((prev) => prev.filter((task) => task.id !== id));
       toast.success("ストックを削除しました！🗑️");
     } catch (error) {
@@ -74,6 +75,6 @@ export function useStock() {
     completedTasks,
     totalPoints,
     state: { targetDate, setTargetDate, selectedColor, setSelectedColor },
-    actions: { handleAdd, handleStack, handleUnstack, handleDelete },
+    actions: { handleAdd, updateStatus, handleDelete },
   };
 }

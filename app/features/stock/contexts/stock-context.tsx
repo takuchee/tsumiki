@@ -1,6 +1,5 @@
 import { createContext, useContext, useState } from 'react';
-import type { ColorName, StockContextType, TaskLog } from '../types';
-import { format } from "date-fns";
+import type { ColorName, StockContextType, StockTask } from '../types';
 
 const StockContext = createContext<StockContextType | undefined>(undefined);
 
@@ -9,14 +8,13 @@ export const StockProvider = ({
   initialLogs = []
 }: {
   children: React.ReactNode;
-  initialLogs?: TaskLog[]
+  initialLogs?: StockTask[]
 }) => {
-  const [allTasks, setAllTasks] = useState<TaskLog[]>(initialLogs);
-  const [targetDate, setTargetDate] = useState<Date>(() => {
+  const [allTasks, setAllTasks] = useState<StockTask[]>(initialLogs);
+  const [targetDate, setTargetDate] = useState<string>(() => {
     const now = new Date();
-    return new Date(now.getFullYear(), now.getMonth(), now.getDate());
-  }
-  );
+    return new Date(now.getFullYear(), now.getMonth(), now.getDate()).toISOString().split('T')[0];
+  });
   const [selectedColor, setSelectedColor] = useState<ColorName>("Green");
 
 
