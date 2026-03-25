@@ -52,7 +52,11 @@ export function useStock() {
       setAllTasks((prev) =>
         prev.map((task) => (task.id === id ? updatedTask : task)),
       );
-      toast.success("ストックを積み上げました！📦");
+      const message =
+        newStatus === "completed"
+          ? "ストックを積み上げました！📦"
+          : "資材に戻しました！⏪";
+      toast.success(message);
     } catch (error) {
       toast.error("失敗");
       return;
