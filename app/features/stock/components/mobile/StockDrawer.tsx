@@ -12,7 +12,7 @@ export function StockDrawer({ isOpen, onClose }: { isOpen: boolean, onClose: () 
   return (
     <Drawer open={isOpen} onOpenChange={(open) => !open && onClose()}>
       {/* h-[85vh] で全体の高さを制限 */}
-      <DrawerContent className="drawer-stock-content">
+      <DrawerContent className="drawer-container">
         {/* 引き手バー（自動で出ますが、念のため中身をflex-colで制御） */}
 
         <DrawerHeader className="px-8 py-6 shrink-0">

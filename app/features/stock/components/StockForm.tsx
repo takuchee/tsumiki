@@ -73,7 +73,7 @@ export function StockForm() {
           ))}
         </div>
       </div>
-      <Button onClick={handleAdd} className="btn-stock-submit">
+      <Button onClick={handleAdd} className="main-btn-primary">
         ストックする
       </Button>
     </div>

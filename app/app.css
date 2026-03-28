@@ -122,13 +122,18 @@
 
 @layer utilities {
   /* --- サイドバー（PC版） --- */
-  .sidebar-stock-container {
+  .sidebar-container {
     @apply hidden md:flex w-[400px] p-10 bg-background/80 backdrop-blur-xl border-r border-border flex-col z-20 shadow-2xl;
   }
   /* --- ドロワー（モバイル版） --- */
-  .drawer-stock-content {
+  .drawer-container {
     @apply h-[85vh] p-0 border-none rounded-t-[3rem] flex flex-col bg-background;
   }
+  /* --- スクロールエリア --- */
+  .scroll-area-container {
+    @apply flex-1 min-h-0 overflow-y-auto;
+  }
+
   /* --- 共通のロゴ・タイトルスタイル --- */
   .text-logo-main {
     @apply text-3xl font-black tracking-tighter italic text-primary;
@@ -136,33 +141,31 @@
   .text-drawer-title {
     @apply text-xl font-black italic text-primary text-left;
   }
-  /* --- スクロールエリアの調整 --- */
-  .scroll-area-container {
-    @apply flex-1 min-h-0;
-  }
 
   /* --- カードのスタイル --- */
   .card-stock-form {
     @apply bg-secondary/50 p-5 rounded-3xl space-y-5 border-b-4 border-border;
   }
 
-  /* --- ラベルのスタイル --- */
+  /* ---ラベル--- */
+  /* ノーマル */
   .text-app-label {
     @apply text-[10px] font-black uppercase tracking-widest text-primary ml-1;
   }
+  /* 薄字 */
+  .text-app-label-light {
+    @apply text-[10px] font-normal uppercase tracking-widest text-primary/50 ml-1;
+  }
 
-  /* --- 入力欄のスタイル --- */
+  /* ---入力欄--- */
   .input-stock-main {
     @apply bg-transparent text-lg font-bold border-none outline-none p-0 focus-visible:ring-0 placeholder:text-primary/30;
   }
 
-  /* --- 送信ボタンのスタイル --- */
-  .btn-stock-submit {
-    /* 共通の押し込みアニメーションも含める */
+  /* --- メインボタンのスタイル --- */
+  .main-btn-primary {
     @apply w-full py-3 rounded-2xl text-xs font-black transition-all active:translate-y-1 active:shadow-none;
-    /* 色と独自の影 */
     @apply bg-primary text-primary-foreground shadow-block;
-    /* 先ほど設定したホバー（app.css側で一括適用していれば不要ですが、念のため） */
     @apply hover:bg-primary-hover;
   }
 
@@ -186,19 +189,6 @@
     /* 共通の影を適用（薄めのデフォルト） */
     @apply hover:shadow-lg hover:-translate-y-0.5 active:translate-y-px active:shadow-none;
   }
-  /* --- データが存在しない場合の表示 --- */
-  .palette-empty-area {
-    @apply text-center py-10 border-2 border-dashed rounded-3xl transition-colors;
-    /* システムの境界線色と背景色を使用 */
-    border-color: var(--border);
-    background-color: color-mix(in srgb, var(--background), var(--primary) 2%);
-  }
-  .palette-empty-text {
-    @apply text-[10px] font-bold uppercase tracking-widest;
-    /* システムの控えめな文字色を使用 */
-    color: var(--primary);
-    opacity: 0.5;
-  }
 
   /* --- スコアを表示する浮遊カード --- */
   .card-score-float {
@@ -217,18 +207,20 @@
   .text-date-separator {
     @apply text-[12px] font-black text-white drop-shadow-sm uppercase tracking-[0.2em];
   }
-  /* --- 積み上げブロックの基本体 --- */
-  .block-stacked-base {
+
+  /* 積み上げブロック用CSS */
+  .ui-block-stacked {
     @apply relative min-h-[70px] px-6 py-6 flex flex-col justify-center items-center text-center transition-all;
-    @apply rounded-b-[1.2rem] rounded-t-[1.5rem];
-    @apply border-x-2 border-t-2 border-b-[4px];
-    /* デフォルトの影 */
-    @apply shadow-md;
-  }
-  /* 積み上げブロックのインタラクション（ホバーで浮き、クリックで沈む） */
-  .block-stacked-interactive {
+    @apply rounded-b-[1.2rem] rounded-t-[1.5rem] border-x-2 border-t-2 border-b-[4px] shadow-md;
     @apply group-hover:-translate-y-[6px] group-hover:border-b-[6px] group-hover:shadow-lg;
     @apply group-active:translate-y-[2px] group-active:border-b-[2px] group-active:shadow-sm;
+  }
+
+  /* --- データが存在しない場合の表示 --- */
+  .empty-area {
+    @apply text-center py-10 border-2 border-dashed rounded-3xl transition-colors;
+    border-color: var(--border);
+    background-color: color-mix(in srgb, var(--background), var(--primary) 2%);
   }
 }
 

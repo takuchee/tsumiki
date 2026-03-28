@@ -72,8 +72,8 @@ export function MaterialPalette() {
 
       {/* 資材が空の時の表示 */}
       {materials.length === 0 && (
-        <div className="palette-empty-area">
-          <p className="palette-empty-text">
+        <div className="empty-area">
+          <p className="text-app-label-light">
             No Stock
           </p>
         </div>

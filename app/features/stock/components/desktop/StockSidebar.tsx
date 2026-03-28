@@ -8,7 +8,7 @@ import { ScrollArea } from '~/components/ui/scroll-area'
 export function StockSidebar() {
 
   return (
-    <aside className="sidebar-stock-container">
+    <aside className="sidebar-container">
       <header className="mb-8 shrink-0">
         <h1 className="text-logo-main">積み記</h1>
       </header>

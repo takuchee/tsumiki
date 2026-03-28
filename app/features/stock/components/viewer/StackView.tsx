@@ -45,10 +45,9 @@ export function StackView() {
                     className="relative group cursor-pointer w-full"
                   >
                     <div className={cn(
-                      "block-stacked-base block-stacked-interactive",
+                      "ui-block-stacked",
                       color.bg,
-                      color.border,
-                      // 以前設定した shadow-color があればここでも var で流用可能
+                      color.border
                     )}>
                       <p className={cn(
                         "font-black text-xl leading-tight relative z-10 tracking-tight",
