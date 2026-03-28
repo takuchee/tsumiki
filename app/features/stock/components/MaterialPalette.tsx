@@ -16,7 +16,7 @@ export function MaterialPalette() {
 
   return (
     <section>
-      <h2 className="text-[10px] font-black text-sky-400 uppercase tracking-[0.2em] mb-4">
+      <h2 className="text-app-label mb-4">
         Stock Palette
       </h2>
 
@@ -50,9 +50,7 @@ export function MaterialPalette() {
                   className="cursor-pointer block w-full"
                 >
                   <Card className={cn(
-                    "p-3 border-2 transition-all shadow-[0_4px_0_0_rgba(0,0,0,0.05)]",
-                    "hover:shadow-lg hover:-translate-y-0.5",
-                    "active:translate-y-px",
+                    "card-material-base",
                     color.bg,
                     color.border
                   )}>
@@ -74,8 +72,8 @@ export function MaterialPalette() {
 
       {/* 資材が空の時の表示 */}
       {materials.length === 0 && (
-        <div className="text-center py-10 border-2 border-dashed border-sky-100 rounded-3xl">
-          <p className="text-[10px] font-bold text-sky-200 uppercase tracking-widest">
+        <div className="palette-empty-area">
+          <p className="palette-empty-text">
             No Stock
           </p>
         </div>

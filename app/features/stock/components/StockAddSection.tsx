@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import { StockSidebar } from './desktop/stock-sidebar';
-import { StockDrawer } from './mobile/stock-drawer';
+import { StockSidebar } from './desktop/StockSidebar';
+import { StockDrawer } from './mobile/StockDrawer';
 import { Button } from '~/components/ui/button';
 import { cn } from '~/lib/utils';
 
@@ -23,10 +23,8 @@ export function StockAddSection() {
         size="icon"
         onClick={() => setIsMobileMenuOpen(true)}
         className={cn(
-          "md:hidden fixed bottom-8 right-8 w-16 h-16 z-[60]",
-          "bg-white text-primary rounded-full border-4 border-primary/40",
-          "text-3xl font-black shadow-block active:translate-y-1 active:shadow-none transition-all",
-          isMobileMenuOpen ? "opacity-0 pointer-events-none scale-0" : "opacity-100 scale-100"
+          "btn-float-add",
+          isMobileMenuOpen && "btn-float-hidden"
         )}
       >
         ＋

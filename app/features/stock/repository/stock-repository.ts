@@ -2,6 +2,7 @@
  * @fileoverview タスクログ関連のAPI呼び出しをまとめたファイル
  */
 import { getSupabaseServer } from "~/lib/supabase";
+import type { SupabaseClient } from "@supabase/supabase-js";
 import type {
   TaskLogEntity,
   CreateTaskLog,
@@ -10,7 +11,7 @@ import type {
 
 const supabase = getSupabaseServer();
 
-export const taskLogRepository = {
+export const createTaskLogRepository = (supabase: SupabaseClient) => ({
   /** 全てのタスクを取得する */
   async findAll(): Promise<TaskLogEntity[]> {
     const { data, error } = await supabase
@@ -54,4 +55,6 @@ export const taskLogRepository = {
       throw new Error(error.message);
     }
   },
-};
+});
+
+export const taskLogRepository = createTaskLogRepository(supabase);

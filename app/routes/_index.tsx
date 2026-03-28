@@ -1,7 +1,7 @@
 import { useLoaderData } from 'react-router';
 import { Toaster } from 'sonner';
-import { StockAddSection } from '~/features/stock/components/stock-add-section';
-import { ViewerSection } from '~/features/stock/components/viewer/viewer-section';
+import { StockAddSection } from '~/features/stock/components/StockAddSection';
+import { ViewerSection } from '~/features/stock/components/viewer/ViewerSection';
 import { StockProvider } from '~/features/stock/contexts/stock-context';
 import { getStockTasks } from '~/features/stock/usecases/stock-usecase';
 
