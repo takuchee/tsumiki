@@ -16,17 +16,17 @@ export function MaterialPalette() {
 
   return (
     <section>
-      <h2 className="text-[10px] font-black text-sky-400 uppercase tracking-[0.2em] mb-4">
+      <h2 className="text-app-label mb-4">
         Stock Palette
       </h2>
 
       <div className="grid grid-cols-2 gap-3">
         <AnimatePresence mode="popLayout">
-          {materials.map((m) => {
-            const color = BLOCK_COLORS[m.block_color];
+          {materials.map((stockTask) => {
+            const color = BLOCK_COLORS[stockTask.colorName];
             return (
               <motion.div
-                key={m.id}
+                key={stockTask.id}
                 layout
                 initial={{ opacity: 0, scale: 0.8 }}
                 animate={{ opacity: 1, scale: 1 }}
@@ -37,7 +37,7 @@ export function MaterialPalette() {
                 <Button
                   variant="outline"
                   size="icon-xs"
-                  onClick={() => actions.handleDelete(m.id)}
+                  onClick={() => actions.handleDelete(stockTask.id)}
                   className="absolute -top-2 -left-2 opacity-0 group-hover:opacity-100 transition-opacity z-30">
                   <X />
                 </Button>
@@ -46,22 +46,20 @@ export function MaterialPalette() {
                 <div
                   role="button"
                   tabIndex={0}
-                  onClick={() => actions.handleStack(m.id)}
+                  onClick={() => actions.updateStatus(stockTask.id, "completed")}
                   className="cursor-pointer block w-full"
                 >
                   <Card className={cn(
-                    "p-3 border-2 transition-all shadow-[0_4px_0_0_rgba(0,0,0,0.05)]",
-                    "hover:shadow-lg hover:-translate-y-0.5",
-                    "active:translate-y-px",
+                    "card-material-base",
                     color.bg,
                     color.border
                   )}>
                     <CardHeader className="p-0 space-y-0">
                       <time className={cn("text-[8px] font-black opacity-50 block mb-1", color.text)}>
-                        {m.task_date.replace(/-/g, '.')}
+                        {stockTask.date.replace(/-/g, '.')}
                       </time>
                       <CardTitle className={cn("text-[11px] font-black truncate", color.text)}>
-                        {m.task_name}
+                        {stockTask.content}
                       </CardTitle>
                     </CardHeader>
                   </Card>
@@ -74,8 +72,8 @@ export function MaterialPalette() {
 
       {/* 資材が空の時の表示 */}
       {materials.length === 0 && (
-        <div className="text-center py-10 border-2 border-dashed border-sky-100 rounded-3xl">
-          <p className="text-[10px] font-bold text-sky-200 uppercase tracking-widest">
+        <div className="empty-area">
+          <p className="text-app-label-light">
             No Stock
           </p>
         </div>
