@@ -7,9 +7,9 @@ const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY;
 
 // 安全チェック：変数が空ならここでエラーを投げる（原因を特定しやすくするため）
 if (!supabaseUrl || !supabaseAnonKey) {
-  throw new Error(
-    "Supabaseの環境変数が設定されていません。 .env ファイルを確認してください。",
-  );
+	throw new Error(
+		"Supabaseの環境変数が設定されていません。 .env ファイルを確認してください。",
+	);
 }
 
 // 2. クライアント側（ブラウザ）用
@@ -17,4 +17,4 @@ export const supabase = createBrowserClient(supabaseUrl, supabaseAnonKey);
 
 // 3. サーバー側（loader）用
 export const getSupabaseServer = () =>
-  createSupabaseClient(supabaseUrl, supabaseAnonKey);
+	createSupabaseClient(supabaseUrl, supabaseAnonKey);

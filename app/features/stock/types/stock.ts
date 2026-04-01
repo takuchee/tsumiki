@@ -6,17 +6,17 @@
  * アプリケーション内部で扱うタスク型
  */
 export type StockTask = {
-  id: string;
-  content: string;
-  date: string;
-  colorName: ColorName;
-  status: "pending" | "completed";
+	id: string;
+	content: string;
+	date: string;
+	colorName: ColorName;
+	status: "pending" | "completed";
 };
 
 export type ColorName = "Green" | "Yellow" | "Blue" | "Red" | "Purple";
 export type ColorTheme = {
-  bg: string;
-  shadow: string;
-  border: string;
-  text: string;
+	bg: string;
+	shadow: string;
+	border: string;
+	text: string;
 };
