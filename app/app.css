@@ -6,232 +6,232 @@
 @custom-variant dark (&:is(.dark *));
 
 :root {
-  --background: #ffffff; /* 真っ白 */
-  --foreground: #0c4a6e;
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.145 0 0);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.145 0 0);
-  --primary: #0ea5e9;
-  --primary-foreground: #ffffff;
-  --color-primary-hover: #0284c7;
-  --secondary: #f0f9ff;
-  --secondary-foreground: #0369a1;
-  --muted: #f8fafc;
-  --muted-foreground: #64748b;
-  --accent: oklch(0.97 0 0);
-  --accent-foreground: oklch(0.205 0 0);
-  --destructive: oklch(0.577 0.245 27.325);
-  --border: #e0f2fe;
-  --input: #e0f2fe;
-  --ring: #38bdf8;
-  --chart-1: oklch(0.809 0.105 251.813);
-  --chart-2: oklch(0.623 0.214 259.815);
-  --chart-3: oklch(0.546 0.245 262.881);
-  --chart-4: oklch(0.488 0.243 264.376);
-  --chart-5: oklch(0.424 0.199 265.638);
-  --radius: 0.625rem;
-  --sidebar: oklch(0.985 0 0);
-  --sidebar-foreground: oklch(0.145 0 0);
-  --sidebar-primary: oklch(0.205 0 0);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.97 0 0);
-  --sidebar-accent-foreground: oklch(0.205 0 0);
-  --sidebar-border: oklch(0.922 0 0);
-  --sidebar-ring: oklch(0.708 0 0);
-  --shadow-block: 0 4px 0 0 rgba(14, 165, 233, 0.3);
+	--background: #ffffff; /* 真っ白 */
+	--foreground: #0c4a6e;
+	--card: oklch(1 0 0);
+	--card-foreground: oklch(0.145 0 0);
+	--popover: oklch(1 0 0);
+	--popover-foreground: oklch(0.145 0 0);
+	--primary: #0ea5e9;
+	--primary-foreground: #ffffff;
+	--color-primary-hover: #0284c7;
+	--secondary: #f0f9ff;
+	--secondary-foreground: #0369a1;
+	--muted: #f8fafc;
+	--muted-foreground: #64748b;
+	--accent: oklch(0.97 0 0);
+	--accent-foreground: oklch(0.205 0 0);
+	--destructive: oklch(0.577 0.245 27.325);
+	--border: #e0f2fe;
+	--input: #e0f2fe;
+	--ring: #38bdf8;
+	--chart-1: oklch(0.809 0.105 251.813);
+	--chart-2: oklch(0.623 0.214 259.815);
+	--chart-3: oklch(0.546 0.245 262.881);
+	--chart-4: oklch(0.488 0.243 264.376);
+	--chart-5: oklch(0.424 0.199 265.638);
+	--radius: 0.625rem;
+	--sidebar: oklch(0.985 0 0);
+	--sidebar-foreground: oklch(0.145 0 0);
+	--sidebar-primary: oklch(0.205 0 0);
+	--sidebar-primary-foreground: oklch(0.985 0 0);
+	--sidebar-accent: oklch(0.97 0 0);
+	--sidebar-accent-foreground: oklch(0.205 0 0);
+	--sidebar-border: oklch(0.922 0 0);
+	--sidebar-ring: oklch(0.708 0 0);
+	--shadow-block: 0 4px 0 0 rgba(14, 165, 233, 0.3);
 }
 
 .dark {
-  --background: oklch(0.145 0 0);
-  --foreground: oklch(0.985 0 0);
-  --card: oklch(0.205 0 0);
-  --card-foreground: oklch(0.985 0 0);
-  --popover: oklch(0.205 0 0);
-  --popover-foreground: oklch(0.985 0 0);
-  --primary: oklch(0.922 0 0);
-  --primary-foreground: oklch(0.205 0 0);
-  --secondary: oklch(0.269 0 0);
-  --secondary-foreground: oklch(0.985 0 0);
-  --muted: oklch(0.269 0 0);
-  --muted-foreground: oklch(0.708 0 0);
-  --accent: oklch(0.269 0 0);
-  --accent-foreground: oklch(0.985 0 0);
-  --destructive: oklch(0.704 0.191 22.216);
-  --border: oklch(1 0 0 / 10%);
-  --input: oklch(1 0 0 / 15%);
-  --ring: oklch(0.556 0 0);
-  --chart-1: oklch(0.809 0.105 251.813);
-  --chart-2: oklch(0.623 0.214 259.815);
-  --chart-3: oklch(0.546 0.245 262.881);
-  --chart-4: oklch(0.488 0.243 264.376);
-  --chart-5: oklch(0.424 0.199 265.638);
-  --sidebar: oklch(0.205 0 0);
-  --sidebar-foreground: oklch(0.985 0 0);
-  --sidebar-primary: oklch(0.488 0.243 264.376);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.269 0 0);
-  --sidebar-accent-foreground: oklch(0.985 0 0);
-  --sidebar-border: oklch(1 0 0 / 10%);
-  --sidebar-ring: oklch(0.556 0 0);
+	--background: oklch(0.145 0 0);
+	--foreground: oklch(0.985 0 0);
+	--card: oklch(0.205 0 0);
+	--card-foreground: oklch(0.985 0 0);
+	--popover: oklch(0.205 0 0);
+	--popover-foreground: oklch(0.985 0 0);
+	--primary: oklch(0.922 0 0);
+	--primary-foreground: oklch(0.205 0 0);
+	--secondary: oklch(0.269 0 0);
+	--secondary-foreground: oklch(0.985 0 0);
+	--muted: oklch(0.269 0 0);
+	--muted-foreground: oklch(0.708 0 0);
+	--accent: oklch(0.269 0 0);
+	--accent-foreground: oklch(0.985 0 0);
+	--destructive: oklch(0.704 0.191 22.216);
+	--border: oklch(1 0 0 / 10%);
+	--input: oklch(1 0 0 / 15%);
+	--ring: oklch(0.556 0 0);
+	--chart-1: oklch(0.809 0.105 251.813);
+	--chart-2: oklch(0.623 0.214 259.815);
+	--chart-3: oklch(0.546 0.245 262.881);
+	--chart-4: oklch(0.488 0.243 264.376);
+	--chart-5: oklch(0.424 0.199 265.638);
+	--sidebar: oklch(0.205 0 0);
+	--sidebar-foreground: oklch(0.985 0 0);
+	--sidebar-primary: oklch(0.488 0.243 264.376);
+	--sidebar-primary-foreground: oklch(0.985 0 0);
+	--sidebar-accent: oklch(0.269 0 0);
+	--sidebar-accent-foreground: oklch(0.985 0 0);
+	--sidebar-border: oklch(1 0 0 / 10%);
+	--sidebar-ring: oklch(0.556 0 0);
 }
 
 @theme inline {
-  --font-sans: "Geist Variable", sans-serif;
-  --color-sidebar-ring: var(--sidebar-ring);
-  --color-sidebar-border: var(--sidebar-border);
-  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
-  --color-sidebar-accent: var(--sidebar-accent);
-  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
-  --color-sidebar-primary: var(--sidebar-primary);
-  --color-sidebar-foreground: var(--sidebar-foreground);
-  --color-sidebar: var(--sidebar);
-  --color-chart-5: var(--chart-5);
-  --color-chart-4: var(--chart-4);
-  --color-chart-3: var(--chart-3);
-  --color-chart-2: var(--chart-2);
-  --color-chart-1: var(--chart-1);
-  --color-ring: var(--ring);
-  --color-input: var(--input);
-  --color-border: var(--border);
-  --color-destructive: var(--destructive);
-  --color-accent-foreground: var(--accent-foreground);
-  --color-accent: var(--accent);
-  --color-muted-foreground: var(--muted-foreground);
-  --color-muted: var(--muted);
-  --color-secondary-foreground: var(--secondary-foreground);
-  --color-secondary: var(--secondary);
-  --color-primary-foreground: var(--primary-foreground);
-  --color-primary: var(--primary);
-  --color-primary-hover: var(--color-primary-hover);
-  --color-popover-foreground: var(--popover-foreground);
-  --color-popover: var(--popover);
-  --color-card-foreground: var(--card-foreground);
-  --color-card: var(--card);
-  --color-foreground: var(--foreground);
-  --color-background: var(--background);
-  --radius-sm: calc(var(--radius) * 0.6);
-  --radius-md: calc(var(--radius) * 0.8);
-  --radius-lg: var(--radius);
-  --radius-xl: calc(var(--radius) * 1.4);
-  --radius-2xl: calc(var(--radius) * 1.8);
-  --radius-3xl: calc(var(--radius) * 2.2);
-  --radius-4xl: calc(var(--radius) * 2.6);
-  --shadow-block: var(--shadow-block);
+	--font-sans: "Geist Variable", sans-serif;
+	--color-sidebar-ring: var(--sidebar-ring);
+	--color-sidebar-border: var(--sidebar-border);
+	--color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+	--color-sidebar-accent: var(--sidebar-accent);
+	--color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+	--color-sidebar-primary: var(--sidebar-primary);
+	--color-sidebar-foreground: var(--sidebar-foreground);
+	--color-sidebar: var(--sidebar);
+	--color-chart-5: var(--chart-5);
+	--color-chart-4: var(--chart-4);
+	--color-chart-3: var(--chart-3);
+	--color-chart-2: var(--chart-2);
+	--color-chart-1: var(--chart-1);
+	--color-ring: var(--ring);
+	--color-input: var(--input);
+	--color-border: var(--border);
+	--color-destructive: var(--destructive);
+	--color-accent-foreground: var(--accent-foreground);
+	--color-accent: var(--accent);
+	--color-muted-foreground: var(--muted-foreground);
+	--color-muted: var(--muted);
+	--color-secondary-foreground: var(--secondary-foreground);
+	--color-secondary: var(--secondary);
+	--color-primary-foreground: var(--primary-foreground);
+	--color-primary: var(--primary);
+	--color-primary-hover: var(--color-primary-hover);
+	--color-popover-foreground: var(--popover-foreground);
+	--color-popover: var(--popover);
+	--color-card-foreground: var(--card-foreground);
+	--color-card: var(--card);
+	--color-foreground: var(--foreground);
+	--color-background: var(--background);
+	--radius-sm: calc(var(--radius) * 0.6);
+	--radius-md: calc(var(--radius) * 0.8);
+	--radius-lg: var(--radius);
+	--radius-xl: calc(var(--radius) * 1.4);
+	--radius-2xl: calc(var(--radius) * 1.8);
+	--radius-3xl: calc(var(--radius) * 2.2);
+	--radius-4xl: calc(var(--radius) * 2.6);
+	--shadow-block: var(--shadow-block);
 }
 
 @layer utilities {
-  /* --- サイドバー（PC版） --- */
-  .sidebar-container {
-    @apply hidden md:flex w-[400px] p-10 bg-background/80 backdrop-blur-xl border-r border-border flex-col z-20 shadow-2xl;
-  }
-  /* --- ドロワー（モバイル版） --- */
-  .drawer-container {
-    @apply h-[85vh] p-0 border-none rounded-t-[3rem] flex flex-col bg-background;
-  }
-  /* --- スクロールエリア --- */
-  .scroll-area-container {
-    @apply flex-1 min-h-0 overflow-y-auto;
-  }
+	/* --- サイドバー（PC版） --- */
+	.sidebar-container {
+		@apply hidden md:flex w-[400px] p-10 bg-background/80 backdrop-blur-xl border-r border-border flex-col z-20 shadow-2xl;
+	}
+	/* --- ドロワー（モバイル版） --- */
+	.drawer-container {
+		@apply h-[85vh] p-0 border-none rounded-t-[3rem] flex flex-col bg-background;
+	}
+	/* --- スクロールエリア --- */
+	.scroll-area-container {
+		@apply flex-1 min-h-0 overflow-y-auto;
+	}
 
-  /* --- 共通のロゴ・タイトルスタイル --- */
-  .text-logo-main {
-    @apply text-3xl font-black tracking-tighter italic text-primary;
-  }
-  .text-drawer-title {
-    @apply text-xl font-black italic text-primary text-left;
-  }
+	/* --- 共通のロゴ・タイトルスタイル --- */
+	.text-logo-main {
+		@apply text-3xl font-black tracking-tighter italic text-primary;
+	}
+	.text-drawer-title {
+		@apply text-xl font-black italic text-primary text-left;
+	}
 
-  /* --- カードのスタイル --- */
-  .card-stock-form {
-    @apply bg-secondary/50 p-5 rounded-3xl space-y-5 border-b-4 border-border;
-  }
+	/* --- カードのスタイル --- */
+	.card-stock-form {
+		@apply bg-secondary/50 p-5 rounded-3xl space-y-5 border-b-4 border-border;
+	}
 
-  /* ---ラベル--- */
-  /* ノーマル */
-  .text-app-label {
-    @apply text-[10px] font-black uppercase tracking-widest text-primary ml-1;
-  }
-  /* 薄字 */
-  .text-app-label-light {
-    @apply text-[10px] font-normal uppercase tracking-widest text-primary/50 ml-1;
-  }
+	/* ---ラベル--- */
+	/* ノーマル */
+	.text-app-label {
+		@apply text-[10px] font-black uppercase tracking-widest text-primary ml-1;
+	}
+	/* 薄字 */
+	.text-app-label-light {
+		@apply text-[10px] font-normal uppercase tracking-widest text-primary/50 ml-1;
+	}
 
-  /* ---入力欄--- */
-  .input-stock-main {
-    @apply bg-transparent text-lg font-bold border-none outline-none p-0 focus-visible:ring-0 placeholder:text-primary/30;
-  }
+	/* ---入力欄--- */
+	.input-stock-main {
+		@apply bg-transparent text-lg font-bold border-none outline-none p-0 focus-visible:ring-0 placeholder:text-primary/30;
+	}
 
-  /* --- メインボタンのスタイル --- */
-  .main-btn-primary {
-    @apply w-full py-3 rounded-2xl text-xs font-black transition-all active:translate-y-1 active:shadow-none;
-    @apply bg-primary text-primary-foreground shadow-block;
-    @apply hover:bg-primary-hover;
-  }
+	/* --- メインボタンのスタイル --- */
+	.main-btn-primary {
+		@apply w-full py-3 rounded-2xl text-xs font-black transition-all active:translate-y-1 active:shadow-none;
+		@apply bg-primary text-primary-foreground shadow-block;
+		@apply hover:bg-primary-hover;
+	}
 
-  /* モバイル用： ストック追加ボタン*/
-  .btn-float-add {
-    /* 配置とサイズ */
-    @apply fixed bottom-8 right-8 w-16 h-16 z-[60] md:hidden;
-    /* 見た目 */
-    @apply bg-white text-primary rounded-full border-4 border-primary/40 text-3xl font-black;
-    /* アニメーションと影 */
-    @apply transition-all duration-300 active:translate-y-1;
-  }
-  /* 状態：消える時のスタイル */
-  .btn-float-hidden {
-    @apply opacity-0 pointer-events-none scale-0;
-  }
+	/* モバイル用： ストック追加ボタン*/
+	.btn-float-add {
+		/* 配置とサイズ */
+		@apply fixed bottom-8 right-8 w-16 h-16 z-[60] md:hidden;
+		/* 見た目 */
+		@apply bg-white text-primary rounded-full border-4 border-primary/40 text-3xl font-black;
+		/* アニメーションと影 */
+		@apply transition-all duration-300 active:translate-y-1;
+	}
+	/* 状態：消える時のスタイル */
+	.btn-float-hidden {
+		@apply opacity-0 pointer-events-none scale-0;
+	}
 
-  /* ストックのカード */
-  .card-material-base {
-    @apply p-3 border-2 transition-all cursor-pointer;
-    /* 共通の影を適用（薄めのデフォルト） */
-    @apply hover:shadow-lg hover:-translate-y-0.5 active:translate-y-px active:shadow-none;
-  }
+	/* ストックのカード */
+	.card-material-base {
+		@apply p-3 border-2 transition-all cursor-pointer;
+		/* 共通の影を適用（薄めのデフォルト） */
+		@apply hover:shadow-lg hover:-translate-y-0.5 active:translate-y-px active:shadow-none;
+	}
 
-  /* --- スコアを表示する浮遊カード --- */
-  .card-score-float {
-    @apply bg-background/90 backdrop-blur border-4 border-primary p-3 rounded-2xl shadow-xl flex flex-col items-center min-w-[80px];
-  }
-  /* --- スコアの数字部分 --- */
-  .text-score-number {
-    @apply text-3xl font-black text-primary leading-none mt-1;
-  }
-  /* --- メイン表示エリアのレイアウト --- */
-  .viewer-main-container {
-    @apply flex-1 overflow-y-auto p-6 md:px-20 z-10;
-  }
+	/* --- スコアを表示する浮遊カード --- */
+	.card-score-float {
+		@apply bg-background/90 backdrop-blur border-4 border-primary p-3 rounded-2xl shadow-xl flex flex-col items-center min-w-[80px];
+	}
+	/* --- スコアの数字部分 --- */
+	.text-score-number {
+		@apply text-3xl font-black text-primary leading-none mt-1;
+	}
+	/* --- メイン表示エリアのレイアウト --- */
+	.viewer-main-container {
+		@apply flex-1 overflow-y-auto p-6 md:px-20 z-10;
+	}
 
-  /* --- 日付セパレーターのテキスト --- */
-  .text-date-separator {
-    @apply text-[12px] font-black text-white drop-shadow-sm uppercase tracking-[0.2em];
-  }
+	/* --- 日付セパレーターのテキスト --- */
+	.text-date-separator {
+		@apply text-[12px] font-black text-white drop-shadow-sm uppercase tracking-[0.2em];
+	}
 
-  /* 積み上げブロック用CSS */
-  .ui-block-stacked {
-    @apply relative min-h-[70px] px-6 py-6 flex flex-col justify-center items-center text-center transition-all;
-    @apply rounded-b-[1.2rem] rounded-t-[1.5rem] border-x-2 border-t-2 border-b-[4px] shadow-md;
-    @apply group-hover:-translate-y-[6px] group-hover:border-b-[6px] group-hover:shadow-lg;
-    @apply group-active:translate-y-[2px] group-active:border-b-[2px] group-active:shadow-sm;
-  }
+	/* 積み上げブロック用CSS */
+	.ui-block-stacked {
+		@apply relative min-h-[70px] px-6 py-6 flex flex-col justify-center items-center text-center transition-all;
+		@apply rounded-b-[1.2rem] rounded-t-[1.5rem] border-x-2 border-t-2 border-b-[4px] shadow-md;
+		@apply group-hover:-translate-y-[6px] group-hover:border-b-[6px] group-hover:shadow-lg;
+		@apply group-active:translate-y-[2px] group-active:border-b-[2px] group-active:shadow-sm;
+	}
 
-  /* --- データが存在しない場合の表示 --- */
-  .empty-area {
-    @apply text-center py-10 border-2 border-dashed rounded-3xl transition-colors;
-    border-color: var(--border);
-    background-color: color-mix(in srgb, var(--background), var(--primary) 2%);
-  }
+	/* --- データが存在しない場合の表示 --- */
+	.empty-area {
+		@apply text-center py-10 border-2 border-dashed rounded-3xl transition-colors;
+		border-color: var(--border);
+		background-color: color-mix(in srgb, var(--background), var(--primary) 2%);
+	}
 }
 
 @layer base {
-  * {
-    @apply border-border outline-ring/50;
-  }
-  body {
-    @apply bg-background text-foreground;
-  }
-  html {
-    @apply font-sans;
-  }
+	* {
+		@apply border-border outline-ring/50;
+	}
+	body {
+		@apply bg-background text-foreground;
+	}
+	html {
+		@apply font-sans;
+	}
 }
