@@ -6,8 +6,6 @@ import type {
 	TaskLogEntity,
 } from "../types";
 
-/** */
-
 /**
  * ストック一覧を取得
  */
