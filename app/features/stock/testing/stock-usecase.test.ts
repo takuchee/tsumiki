@@ -7,7 +7,6 @@ import { getStockTasks, updateStockTaskStatus } from "../usecases";
 vi.mock("../repository/stock-repository", () => ({
 	taskLogRepository: {
 		update: vi.fn(),
-		findAll: vi.fn(),
 	},
 }));
 
