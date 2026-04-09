@@ -1,4 +1,4 @@
-import { useLoaderData } from "react-router";
+import { redirect, useLoaderData } from "react-router";
 import { Toaster } from "sonner";
 import { StockAddSection } from "~/features/stock/components/StockAddSection";
 import { ViewerSection } from "~/features/stock/components/viewer/ViewerSection";
