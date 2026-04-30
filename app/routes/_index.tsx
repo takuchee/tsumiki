@@ -1,4 +1,4 @@
-import { redirect, useLoaderData } from "react-router";
+import { useLoaderData } from "react-router";
 import { Toaster } from "sonner";
 import { StockAddSection } from "~/features/stock/components/StockAddSection";
 import { ViewerSection } from "~/features/stock/components/viewer/ViewerSection";
@@ -9,6 +9,8 @@ export async function clientLoader() {
 	const initialLogs = await getStockTasks();
 	return { initialLogs };
 }
+
+clientLoader.hydrate = true;
 
 export default function IndexPage() {
 	const { initialLogs } = useLoaderData<typeof clientLoader>();

@@ -14,10 +14,11 @@ const supabase = getSupabaseServer();
 
 export const createTaskLogRepository = (supabase: SupabaseClient) => ({
 	/** 全てのタスクを取得する */
-	async findAll(): Promise<TaskLogEntity[]> {
+	async findAll(userId: string): Promise<TaskLogEntity[]> {
 		const { data, error } = await supabase
 			.from("task_logs")
 			.select("*")
+			.eq("user_id", userId)
 			.order("created_at", { ascending: false });
 
 		if (error) throw new Error(error.message);

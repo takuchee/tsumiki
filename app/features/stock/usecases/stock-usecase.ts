@@ -9,9 +9,10 @@ import type {
 /**
  * ストック一覧を取得
  */
-export const getStockTasks = async (): Promise<StockTask[]> => {
+export const getStockTasks = async (userId: string): Promise<StockTask[]> => {
 	try {
-		const taskLogsEntity: TaskLogEntity[] = await taskLogRepository.findAll();
+		const taskLogsEntity: TaskLogEntity[] =
+			await taskLogRepository.findAll(userId);
 		return taskLogsEntity.map(toStockTask);
 	} catch (error) {
 		console.error("タスクの取得に失敗:", error);
