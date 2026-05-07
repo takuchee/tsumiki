@@ -1,6 +1,8 @@
 import { zodResolver } from "@hookform/resolvers/zod";
+import { isAuthApiError } from "@supabase/supabase-js";
 import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router";
+import { toast } from "sonner";
 import { Button } from "~/components/ui/button";
 import {
 	Card,
@@ -34,20 +36,30 @@ export const LoginForm = () => {
 
 	// 2. ログイン実行
 	const onSubmit = async (data: LoginFormData) => {
-		try {
-			await signIn(data.email, data.password);
-			// ログイン成功時に /stock へ遷移
-			window.location.href = "/"; // ここは navigate("/") ではなく、リロードしてユーザーデータを確実に反映させるために location.href を使用
-		} catch (err) {
-			// 後のステップでここにトースター（通知）を実装します
-			console.error("ログイン失敗:", err);
-		}
+		const signInPromise = signIn(data.email, data.password);
+		toast.promise(signInPromise, {
+			loading: "ログイン中...",
+			success: () => {
+				setTimeout(() => {
+					window.location.href = "/";
+				}, 1000);
+				return `${data.email}さんおかえりなさい！一緒に積み上げていきましょう！`;
+			},
+			error: (err) => {
+				if (!isAuthApiError(err)) {
+					return "ログインに失敗しました。再度お試しください。";
+				}
+				if (err.code === "invalid_credentials") {
+					return "メールアドレスまたはパスワードが間違っています。";
+				}
+				return err.message;
+			},
+		});
 	};
 
 	const handleSocialClick = async (provider: "google" | "apple") => {
 		try {
 			await signInWithSocial(provider);
-			// ソーシャルログイン成功時も /stock へ
 			navigate("/");
 		} catch (err) {
 			console.error("ソーシャルログイン失敗:", err);

@@ -1,6 +1,8 @@
 import { zodResolver } from "@hookform/resolvers/zod";
+import { isAuthApiError } from "@supabase/supabase-js";
 import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router";
+import { toast } from "sonner";
 import { Button } from "~/components/ui/button";
 import {
 	Card,
@@ -33,12 +35,20 @@ export const RegisterForm = () => {
 	});
 
 	const onSubmit = async (data: RegisterFormData) => {
-		try {
-			await signUp(data.email, data.password);
-			navigate("/");
-		} catch (error) {
-			console.error("新規登録に失敗しました:", error);
-		}
+		const signUpPromise = signUp(data.email, data.password);
+		toast.promise(signUpPromise, {
+			loading: "登録中...",
+			success: "登録が完了しました！ログインしてください。",
+			error: (err) => {
+				if (!isAuthApiError(err)) {
+					return "新規登録に失敗しました。再度お試しください。";
+				}
+				if (err.code === "user_already_exists") {
+					return "このメールアドレスは既に登録されています。ログインしてください。";
+				}
+				return err.message;
+			},
+		});
 	};
 
 	const handleSocialClick = async (provider: "google" | "apple") => {
