@@ -1,4 +1,5 @@
-import { taskLogRepository } from "../repository/stock-repository";
+import type { SupabaseClient } from "@supabase/supabase-js";
+import { createTaskLogRepository } from "../repository/stock-repository";
 import type {
 	ColorName,
 	CreateTaskLog,
@@ -9,7 +10,11 @@ import type {
 /**
  * ストック一覧を取得
  */
-export const getStockTasks = async (userId: string): Promise<StockTask[]> => {
+export const getStockTasks = async (
+	supabase: SupabaseClient,
+	userId: string,
+): Promise<StockTask[]> => {
+	const taskLogRepository = createTaskLogRepository(supabase);
 	try {
 		const taskLogsEntity: TaskLogEntity[] =
 			await taskLogRepository.findAll(userId);
@@ -34,8 +39,10 @@ const toStockTask = (entity: TaskLogEntity): StockTask => {
  * ストック新規作成
  */
 export const createStockTask = async (
+	supabase: SupabaseClient,
 	task: Omit<StockTask, "id">,
 ): Promise<StockTask> => {
+	const taskLogRepository = createTaskLogRepository(supabase);
 	try {
 		const toTaskLogEntity: CreateTaskLog = {
 			task_name: task.content,
@@ -54,7 +61,11 @@ export const createStockTask = async (
 /**
  *ストック削除
  */
-export const deleteStockTask = async (id: string): Promise<void> => {
+export const deleteStockTask = async (
+	supabase: SupabaseClient,
+	id: string,
+): Promise<void> => {
+	const taskLogRepository = createTaskLogRepository(supabase);
 	try {
 		await taskLogRepository.delete(id);
 	} catch (error) {
@@ -67,9 +78,11 @@ export const deleteStockTask = async (id: string): Promise<void> => {
  * ストックのステータス更新
  */
 export const updateStockTaskStatus = async (
+	supabase: SupabaseClient,
 	id: string,
 	newStatus: StockTask["status"],
 ) => {
+	const taskLogRepository = createTaskLogRepository(supabase);
 	try {
 		const updatedTask = await taskLogRepository.update(id, {
 			status: newStatus,

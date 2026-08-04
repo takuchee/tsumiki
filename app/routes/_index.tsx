@@ -10,8 +10,6 @@ export async function clientLoader() {
 	return { initialLogs };
 }
 
-clientLoader.hydrate = true;
-
 export default function IndexPage() {
 	const { initialLogs } = useLoaderData<typeof clientLoader>();
 

@@ -1,7 +1,7 @@
 import { zodResolver } from "@hookform/resolvers/zod";
-import { isAuthApiError } from "@supabase/supabase-js";
+import { useEffect, useRef } from "react";
 import { useForm } from "react-hook-form";
-import { Link, useNavigate } from "react-router";
+import { Link, useFetcher } from "react-router";
 import { toast } from "sonner";
 import { Button } from "~/components/ui/button";
 import {
@@ -15,16 +15,17 @@ import {
 import { Field, FieldGroup, FieldLabel } from "~/components/ui/field";
 import { Input } from "~/components/ui/input";
 import { cn } from "~/lib/utils";
-import { useAuth } from "../hooks/use-auth";
 import { type LoginFormData, loginSchema } from "../types/auth";
 import { AuthSeparator } from "./ui/auth-separator";
 import { SocialButtons } from "./ui/social-buttons";
 
 export const LoginForm = () => {
-	const navigate = useNavigate();
-	const { signIn, signInWithSocial, isLoading } = useAuth();
+	const fetcher = useFetcher<{ error?: string }>();
+	const isLoading = fetcher.state !== "idle";
 
-	// 1. Hook Form の設定
+	// トーストのローディングIDを保持するための参照
+	const toastIdRef = useRef<string | number | null>(null);
+
 	const {
 		register,
 		handleSubmit,
@@ -34,36 +35,46 @@ export const LoginForm = () => {
 		mode: "onBlur",
 	});
 
-	// 2. ログイン実行
-	const onSubmit = async (data: LoginFormData) => {
-		const signInPromise = signIn(data.email, data.password);
-		toast.promise(signInPromise, {
-			loading: "ログイン中...",
-			success: () => {
-				setTimeout(() => {
-					window.location.href = "/";
-				}, 1000);
-				return `${data.email}さんおかえりなさい！一緒に積み上げていきましょう！`;
-			},
-			error: (err) => {
-				if (!isAuthApiError(err)) {
-					return "ログインに失敗しました。再度お試しください。";
-				}
-				if (err.code === "invalid_credentials") {
-					return "メールアドレスまたはパスワードが間違っています。";
-				}
-				return err.message;
-			},
-		});
+	// 💡 【ここが集約場所】サーバーの通信状態（fetcher）を監視して、トースターを完璧に制御する
+	useEffect(() => {
+		// A. サーバーへ送信中のとき ➔ ローディングを表示
+		if (fetcher.state === "submitting" || fetcher.state === "loading") {
+			if (!toastIdRef.current) {
+				toastIdRef.current = toast.loading("ログイン中...");
+			}
+		}
+
+		// B. サーバーからの返却（完了）があったとき
+		if (fetcher.state === "idle" && fetcher.data) {
+			// 既存のローディングトーストを消す
+			if (toastIdRef.current) {
+				toast.dismiss(toastIdRef.current);
+				toastIdRef.current = null;
+			}
+
+			// サーバー側でエラーが返ってきた場合
+			if (fetcher.data.error) {
+				toast.error(fetcher.data.error);
+			} else {
+				// エラーがない ➔ ログイン成功（リダイレクトされる前のハッピーパス）
+				toast.success("ログインに成功しました！おかえりなさい！");
+			}
+		}
+	}, [fetcher.state, fetcher.data]);
+
+	// 💡 送信時は「ただ投げるだけ」。ややこしい非同期ロジックはここには一切書かない！
+	const onSubmit = (data: LoginFormData) => {
+		fetcher.submit(
+			{ email: data.email, password: data.password, intent: "email" },
+			{ method: "post", action: "/login" },
+		);
 	};
 
-	const handleSocialClick = async (provider: "google" | "apple") => {
-		try {
-			await signInWithSocial(provider);
-			navigate("/");
-		} catch (err) {
-			console.error("ソーシャルログイン失敗:", err);
-		}
+	const handleSocialClick = (provider: "google" | "apple") => {
+		fetcher.submit(
+			{ provider, intent: "social" },
+			{ method: "post", action: "/login" },
+		);
 	};
 
 	return (
@@ -73,9 +84,7 @@ export const LoginForm = () => {
 					<CardTitle>Login</CardTitle>
 					<CardDescription>ログインフォーム</CardDescription>
 				</CardHeader>
-
 				<CardContent>
-					{/* handleSubmit を使用 */}
 					<form id="login-form" onSubmit={handleSubmit(onSubmit)}>
 						<FieldGroup>
 							<Field>
@@ -94,7 +103,6 @@ export const LoginForm = () => {
 									</p>
 								)}
 							</Field>
-
 							<Field>
 								<FieldLabel>パスワード</FieldLabel>
 								<Input
@@ -115,7 +123,6 @@ export const LoginForm = () => {
 						</FieldGroup>
 					</form>
 				</CardContent>
-
 				<CardFooter className="flex flex-col gap-4">
 					<Button
 						className="w-full"
@@ -125,11 +132,8 @@ export const LoginForm = () => {
 					>
 						{isLoading ? "ログイン中..." : "ログイン"}
 					</Button>
-
 					<AuthSeparator>または</AuthSeparator>
-
 					<SocialButtons onSocialClick={handleSocialClick} />
-
 					<Button variant="link" size="sm" className="w-full" asChild>
 						<Link to="/register">アカウントをお持ちでない方はこちら</Link>
 					</Button>

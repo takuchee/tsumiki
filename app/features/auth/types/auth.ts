@@ -2,9 +2,7 @@ import { z } from "zod";
 
 // スキーマ定義
 export const loginSchema = z.object({
-	email: z
-		.email({ message: "メールアドレスの形式で入力してください" })
-		.min(1, { message: "メールアドレスは必須です" }),
+	email: z.email({ message: "メールアドレスの形式で入力してください" }),
 	password: z
 		.string()
 		.min(1, { message: "パスワードは必須です" })

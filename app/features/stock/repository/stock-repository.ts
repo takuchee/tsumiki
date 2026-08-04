@@ -3,14 +3,11 @@
  */
 
 import type { SupabaseClient } from "@supabase/supabase-js";
-import { getSupabaseServer } from "~/lib/supabase";
 import type {
 	CreateTaskLog,
 	TaskLogEntity,
 	UpdateTaskLog,
 } from "../types/entity";
-
-const supabase = getSupabaseServer();
 
 export const createTaskLogRepository = (supabase: SupabaseClient) => ({
 	/** 全てのタスクを取得する */
@@ -58,5 +55,3 @@ export const createTaskLogRepository = (supabase: SupabaseClient) => ({
 		}
 	},
 });
-
-export const taskLogRepository = createTaskLogRepository(supabase);

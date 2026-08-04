@@ -1,5 +1,11 @@
+import type { ActionFunctionArgs } from "react-router";
 import { Toaster } from "sonner";
+import { loginAction } from "~/features/auth/actions/login-action";
 import { LoginForm } from "~/features/auth/components/LoginForm";
+
+export const action = async (args: ActionFunctionArgs) => {
+	return await loginAction(args);
+};
 
 export default function LoginPage() {
 	return (
