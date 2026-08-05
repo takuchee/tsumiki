@@ -5,13 +5,13 @@ import { ViewerSection } from "~/features/stock/components/viewer/ViewerSection"
 import { StockProvider } from "~/features/stock/contexts/stock-context";
 import { getStockTasks } from "~/features/stock/usecases/stock-usecase";
 
-export async function loader() {
+export async function clientLoader() {
 	const initialLogs = await getStockTasks();
 	return { initialLogs };
 }
 
 export default function IndexPage() {
-	const { initialLogs } = useLoaderData<typeof loader>();
+	const { initialLogs } = useLoaderData<typeof clientLoader>();
 
 	return (
 		<StockProvider initialLogs={initialLogs}>
