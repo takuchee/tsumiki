@@ -3,21 +3,19 @@
  */
 
 import type { SupabaseClient } from "@supabase/supabase-js";
-import { getSupabaseServer } from "~/lib/supabase";
 import type {
 	CreateTaskLog,
 	TaskLogEntity,
 	UpdateTaskLog,
 } from "../types/entity";
 
-const supabase = getSupabaseServer();
-
 export const createTaskLogRepository = (supabase: SupabaseClient) => ({
 	/** 全てのタスクを取得する */
-	async findAll(): Promise<TaskLogEntity[]> {
+	async findAll(userId: string): Promise<TaskLogEntity[]> {
 		const { data, error } = await supabase
 			.from("task_logs")
 			.select("*")
+			.eq("user_id", userId)
 			.order("created_at", { ascending: false });
 
 		if (error) throw new Error(error.message);
@@ -57,5 +55,3 @@ export const createTaskLogRepository = (supabase: SupabaseClient) => ({
 		}
 	},
 });
-
-export const taskLogRepository = createTaskLogRepository(supabase);
